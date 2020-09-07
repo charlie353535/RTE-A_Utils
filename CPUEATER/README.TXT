@@ -8,3 +8,5 @@ LINK: en
 
 after that you can run 
 CI> cpueater
+
+this program stresses an A900 to pretty much 100% CPU usage
