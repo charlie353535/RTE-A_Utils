@@ -1,0 +1,51 @@
+FTN,L                     !Small CPU stresser program.
+      PROGRAM cpueater
+      INTEGER*4 count, n, countmod, mode, i1, i2, i3
+      REAL t1, t2, t3, tenpc, n2
+      t1 = 9.87654
+      t2 = 3.14159
+      t3 = 1.23456
+*
+      i1 = 83924
+      i2 = 4
+      i3 = 20981
+  
+      WRITE(1,'(''CPU eater for RTE-A, written by Charlie'')')     
+      WRITE(1,'(''Enter number of iters -->'')')
+      READ *,count
+      WRITE (1,33) count
+  33  FORMAT("Doing ",I12," iterations")
+ 
+      WRITE(1,'(''Enter benchmark mode (0=FPU, 1=INT) -->'')')
+      READ *,mode
+  
+      tenpc = count / 10
+  
+      WRITE(1,'(''===== STARTING BENCHMARK ====='')')
+      n = 1
+  10  if (n .le. count) then
+         n = n+1
+         n2 = n
+         countmod = mod(n2,tenpc)
+         if (countmod .EQ. 0) then
+          WRITE (1,34) n
+  34      FORMAT("Done ",I12, " iterations")
+         endif
+  
+  
+         if (mode .EQ. 0) then
+          t2 = t2 + sqrt(t1)
+          t3 = t2 * t2
+          t1 = sqrt(t3)
+         else if (mode .EQ. 1) then
+          i2 = i1 * i3
+          i1 = i2 / i3
+          i3 = i1 / i2
+         endif
+  
+         goto 10
+      endif
+      WRITE(1,'(''===== BENCHMARK COMPLETE ====='')')
+  
+      STOP
+      END
